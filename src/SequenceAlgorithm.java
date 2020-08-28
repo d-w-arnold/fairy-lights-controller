@@ -1,11 +1,10 @@
+import java.util.List;
+
 /**
  * @author David W. Arnold
  * @version 26/08/2020
  */
-public abstract class SequenceAlgorithm
+public interface SequenceAlgorithm
 {
-    public SequenceAlgorithm()
-    {
-
-    }
+    void run(int numOfFairyLights, List<String> colours);
 }

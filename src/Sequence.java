@@ -1,11 +1,15 @@
+import java.util.List;
+
 /**
  * @author David W. Arnold
  * @version 26/08/2020
  */
-public class Sequence extends SequenceAlgorithm
+public class Sequence implements SequenceAlgorithm
 {
-    public Sequence()
+    @Override
+    public void run(int numOfFairyLights, List<String> colours)
     {
-        super();
+        System.out.println("Running " + this.getClass().getName() + " sequence ...");
+
     }
 }
