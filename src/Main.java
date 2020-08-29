@@ -8,7 +8,11 @@ public class Main
 {
     public static void main(String[] args)
     {
-        Controller controller = new Controller("input_files/colours.txt", "input_files/sequence_algorithms.txt");
+        int n = 20;
+        String coloursPath = "input_files/colours.txt";
+        String seqAlgPath = "input_files/sequence_algorithms.txt";
+
+        Controller controller = new Controller(n, coloursPath, seqAlgPath);
         SequenceAlgorithm selectedSeqAlg = (SequenceAlgorithm) controller.chooseSequenceAlgorithm();
         selectedSeqAlg.run(controller.getNumOfFairyLights(), controller.getColours(), 0);
     }

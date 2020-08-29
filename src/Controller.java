@@ -18,30 +18,45 @@ public class Controller
     private final List<String> colours;
     private final List<String> sequenceAlgorithms;
 
-    public Controller(String colours, String sequenceAlgorithms)
+    public Controller(int numOfFairyLights, String colours, String sequenceAlgorithms)
     {
         System.out.println("\n--- Welcome to this Fairy Light Controller ---");
-        this.numOfFairyLights = getFairyLights();
+        this.numOfFairyLights = getFairyLights(numOfFairyLights);
         this.colours = fileToList(colours);
         this.sequenceAlgorithms = validateSequenceAlgorithms(fileToList(sequenceAlgorithms));
     }
 
-    private static int getFairyLights()
+    private static int getFairyLights(int numOfFairyLights)
     {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int numOfFairyLights = 0;
+        int option = 0;
         try {
             while (true) {
-                System.out.println("\nHow long is the length of fairy lights: (e.g. 20)");
-                numOfFairyLights = Integer.parseInt(br.readLine());
-                if (0 < numOfFairyLights) {
+                System.out.println("\nRun the Fairy Light Controller with " + numOfFairyLights + " fairy lights? (1 - Yes, 0 - No)");
+                option = Integer.parseInt(br.readLine());
+                if (0 <= option && option <= 1) {
                     break;
                 } else {
-                    System.out.println("\n** Please choose a positive number of fairy lights **");
+                    System.out.println("\n** Please choose one of the following options: (1 - Yes, 0 - No) **");
                 }
             }
         } catch (IOException ioe) {
             System.out.println(ioe);
+        }
+        if (option == 0) {
+            try {
+                while (true) {
+                    System.out.println("\nHow many fairy lights should the Fairy Light Controller account for? (e.g. " + numOfFairyLights + ")");
+                    numOfFairyLights = Integer.parseInt(br.readLine());
+                    if (0 < numOfFairyLights) {
+                        break;
+                    } else {
+                        System.out.println("\n** Please choose a positive number of fairy lights **");
+                    }
+                }
+            } catch (IOException ioe) {
+                System.out.println(ioe);
+            }
         }
         return numOfFairyLights;
     }
