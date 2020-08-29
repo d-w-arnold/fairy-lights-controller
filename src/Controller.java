@@ -71,18 +71,23 @@ public class Controller
         return colours;
     }
 
+    public List<String> getSequenceAlgorithms()
+    {
+        return sequenceAlgorithms;
+    }
+
     private List<String> fileToList(String path)
     {
-        List<String> colours = new ArrayList<>();
-        try (BufferedReader brColours = new BufferedReader(new FileReader(path))) {
-            while (brColours.ready()) {
-                colours.add(brColours.readLine());
+        List<String> list = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            while (br.ready()) {
+                list.add(br.readLine());
             }
         } catch (IOException ioe) {
             System.out.println(ioe);
         }
         System.out.println("\n** Read in file contents: " + path + " **");
-        return colours;
+        return list;
     }
 
     private List<String> validateSequenceAlgorithms(List<String> list)
@@ -99,7 +104,7 @@ public class Controller
         return newList;
     }
 
-    public Object chooseSequenceAlgorithm()
+    public SequenceAlgorithm chooseSequenceAlgorithm()
     {
         chooseSeqAlgMsg();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -118,9 +123,9 @@ public class Controller
         } catch (IOException ioe) {
             System.out.println(ioe);
         }
-        Object instanceOfMyClass = null;
+        SequenceAlgorithm instanceOfMyClass = null;
         try {
-            instanceOfMyClass = Class.forName(sequenceAlgorithms.get(selection - 1)).getConstructor().newInstance();
+            instanceOfMyClass = (SequenceAlgorithm) Class.forName(sequenceAlgorithms.get(selection - 1)).getConstructor().newInstance();
         } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
             System.out.println(e);
         }
