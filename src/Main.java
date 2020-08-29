@@ -9,8 +9,8 @@ public class Main
     public static void main(String[] args)
     {
         int n = 20;
-        String coloursPath = "input_files/colours.txt";
-        String seqAlgPath = "input_files/sequence_algorithms.txt";
+        String coloursPath = "src/input_files/colours.txt";
+        String seqAlgPath = "src/input_files/sequence_algorithms.txt";
 
         Controller controller = new Controller(n, coloursPath, seqAlgPath);
         SequenceAlgorithm selectedSeqAlg = (SequenceAlgorithm) controller.chooseSequenceAlgorithm();
