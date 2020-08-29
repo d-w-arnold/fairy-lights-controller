@@ -23,9 +23,7 @@ public class Controller
         System.out.println("\n--- Welcome to this Fairy Light Controller ---");
         this.numOfFairyLights = getFairyLights();
         this.colours = fileToList(colours);
-        // TODO: Validate each sequence algorithm specified in the file,
-        //  discard any sequencing algorithms which don't have a corresponding Java class.
-        this.sequenceAlgorithms = fileToList(sequenceAlgorithms);
+        this.sequenceAlgorithms = validateSequenceAlgorithms(fileToList(sequenceAlgorithms));
     }
 
     private static int getFairyLights()
@@ -70,6 +68,20 @@ public class Controller
         }
         System.out.println("\n** Read in file contents: " + path + " **");
         return colours;
+    }
+
+    private List<String> validateSequenceAlgorithms(List<String> list)
+    {
+        List<String> newList = new ArrayList<>();
+        for (String sa : list) {
+            try {
+                String cappedSa = sa.substring(0, 1).toUpperCase() + sa.substring(1);
+                Class.forName(cappedSa);
+                newList.add(cappedSa);
+            } catch (ClassNotFoundException ignored) {
+            }
+        }
+        return newList;
     }
 
     public Object chooseSequenceAlgorithm()

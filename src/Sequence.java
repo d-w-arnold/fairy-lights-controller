@@ -1,7 +1,9 @@
 import java.util.List;
 
 /**
- * Sequence sequencing algorithm.
+ * 'Sequence' sequencing algorithm.
+ *
+ * Each light is turned on for 0.5 seconds then off in turn from first to last.
  *
  * @author David W. Arnold
  * @version 26/08/2020

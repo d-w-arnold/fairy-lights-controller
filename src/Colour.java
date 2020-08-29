@@ -1,7 +1,10 @@
 import java.util.List;
 
 /**
- * Colour sequencing algorithm.
+ * 'Colour' sequencing algorithm.
+ *
+ * All of the red lights are turned on for 1 second,
+ * then all the green for 1 second then all the white for 1 second.
  *
  * @author David W. Arnold
  * @version 26/08/2020

@@ -1,7 +1,9 @@
 import java.util.List;
 
 /**
- * Alternate sequencing algorithm.
+ * 'Alternate' sequencing algorithm.
+ *
+ * The 'Sequence' algorithm runs for 30 seconds, then the 'Colour' algorithm for 30 seconds.
  *
  * @author David W. Arnold
  * @version 26/08/2020
