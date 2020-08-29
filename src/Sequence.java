@@ -1,26 +1,30 @@
 import java.util.List;
 
 /**
+ * Sequence sequencing algorithm.
+ *
  * @author David W. Arnold
  * @version 26/08/2020
  */
 public class Sequence extends SequenceAlgorithm
 {
     @Override
-    public void run(int numOfFairyLights, List<String> colours)
+    public void run(int numOfFairyLights, List<String> colours, int seconds)
     {
-        System.out.println("\nRunning sequence algorithm: " + this.getClass().getName() + " ...\n");
-        while (true) {
-            for (int i = 1; i <= numOfFairyLights; i++) {
-                System.out.println("Light " + i + " " + getColour(i, colours) + " on");
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    System.out.println(e);
-                }
-                System.out.println("Light " + i + " " + getColour(i, colours) + " off");
+        runLogic(numOfFairyLights, colours, seconds);
+    }
+
+    @Override
+    protected void runHelper(int numOfFairyLights, List<String> colours)
+    {
+        for (int i = 1; i <= numOfFairyLights; i++) {
+            printOnMsg(i, colours);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println(e);
             }
-            System.out.println("\n(Algorithm repeating ...)\n");
+            printOffMsg(i, colours);
         }
     }
 }

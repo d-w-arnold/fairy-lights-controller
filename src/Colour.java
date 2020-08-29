@@ -1,34 +1,38 @@
 import java.util.List;
 
 /**
+ * Colour sequencing algorithm.
+ *
  * @author David W. Arnold
  * @version 26/08/2020
  */
 public class Colour extends SequenceAlgorithm
 {
     @Override
-    public void run(int numOfFairyLights, List<String> colours)
+    public void run(int numOfFairyLights, List<String> colours, int seconds)
     {
-        System.out.println("\nRunning sequence algorithm: " + this.getClass().getName() + " ...\n");
-        while (true) {
-            for (int i = 1; i <= colours.size(); i++) {
-                for (int j = 1; j <= numOfFairyLights; j++) {
-                    if (j % colours.size() == i % colours.size()) {
-                        System.out.println("Light " + j + " " + getColour(j, colours) + " on");
-                    }
-                }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    System.out.println(e);
-                }
-                for (int j = 1; j <= numOfFairyLights; j++) {
-                    if (j % colours.size() == i % colours.size()) {
-                        System.out.println("Light " + j + " " + getColour(j, colours) + " off");
-                    }
+        runLogic(numOfFairyLights, colours, seconds);
+    }
+
+    @Override
+    protected void runHelper(int numOfFairyLights, List<String> colours)
+    {
+        for (int i = 1; i <= colours.size(); i++) {
+            for (int j = 1; j <= numOfFairyLights; j++) {
+                if (j % colours.size() == i % colours.size()) {
+                    printOnMsg(j, colours);
                 }
             }
-            System.out.println("\n(Algorithm repeating ...)\n");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+            for (int j = 1; j <= numOfFairyLights; j++) {
+                if (j % colours.size() == i % colours.size()) {
+                    printOffMsg(j, colours);
+                }
+            }
         }
     }
 }

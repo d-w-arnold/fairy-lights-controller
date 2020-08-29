@@ -7,21 +7,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * A controller for a length of fairy lights.
+ *
  * @author David W. Arnold
  * @version 26/08/2020
  */
 public class Controller
 {
-    private int numOfFairyLights;
-    private List<String> colours;
-    private List<String> sequenceAlgorithms;
+    private final int numOfFairyLights;
+    private final List<String> colours;
+    private final List<String> sequenceAlgorithms;
 
     public Controller(String colours, String sequenceAlgorithms)
     {
         System.out.println("\n--- Welcome to this Fairy Light Controller ---");
         this.numOfFairyLights = getFairyLights();
         this.colours = fileToList(colours);
+        // TODO: Validate each sequence algorithm specified in the file,
+        //  discard any sequencing algorithms which don't have a corresponding Java class.
         this.sequenceAlgorithms = fileToList(sequenceAlgorithms);
+    }
+
+    private static int getFairyLights()
+    {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int numOfFairyLights = 0;
+        try {
+            while (true) {
+                System.out.println("\nHow long is the length of fairy lights: (e.g. 20)");
+                numOfFairyLights = Integer.parseInt(br.readLine());
+                if (0 < numOfFairyLights) {
+                    break;
+                } else {
+                    System.out.println("\n** Please choose a positive number of fairy lights **");
+                }
+            }
+        } catch (IOException ioe) {
+            System.out.println(ioe);
+        }
+        return numOfFairyLights;
     }
 
     public int getNumOfFairyLights()
@@ -32,26 +56,6 @@ public class Controller
     public List<String> getColours()
     {
         return colours;
-    }
-
-    private static int getFairyLights()
-    {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int numOfFairyLights = 0;
-        try {
-            while (true) {
-                System.out.println("\nHow many fairy lights:");
-                numOfFairyLights = Integer.parseInt(br.readLine());
-                if (0 < numOfFairyLights) {
-                    break;
-                } else {
-                    System.out.println("\n** Please try again - choose a positive number of fairy lights **");
-                }
-            }
-        } catch (IOException ioe) {
-            System.out.println(ioe);
-        }
-        return numOfFairyLights;
     }
 
     private List<String> fileToList(String path)
@@ -80,7 +84,7 @@ public class Controller
                 if (1 <= selection && selection <= sequenceAlgorithms.size()) {
                     break;
                 } else {
-                    System.out.println("\n** Please try again - choose a valid number **");
+                    System.out.println("\n** Please choose a valid number **");
                     chooseSeqAlgMsg();
                 }
             }
