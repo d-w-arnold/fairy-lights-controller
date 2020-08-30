@@ -19,6 +19,21 @@ public abstract class SequenceAlgorithm
     abstract public void run(int numOfFairyLights, List<String> colours, int seconds);
 
     /**
+     * Logic unique to each sequence algorithm.
+     *
+     * @param numOfFairyLights The number of fairy lights known by the controller.
+     * @param colours          List of colours.
+     */
+    abstract protected void runHelper(int numOfFairyLights, List<String> colours);
+
+    /**
+     * Get a description of how a sequence algorithm works.
+     *
+     * @return A string describing how a sequence algorithm works.
+     */
+    abstract protected String getDescription();
+
+    /**
      * Logic to decide whether a sequence algorithm runs for a specified
      * number of seconds, or keeps repeating.
      *
@@ -45,14 +60,6 @@ public abstract class SequenceAlgorithm
             }
         }
     }
-
-    /**
-     * Logic unique to each sequence algorithm.
-     *
-     * @param numOfFairyLights The number of fairy lights known by the controller.
-     * @param colours          List of colours.
-     */
-    abstract protected void runHelper(int numOfFairyLights, List<String> colours);
 
     /**
      * Get the colour of a fairy light, based on its position in the length of fairy lights.

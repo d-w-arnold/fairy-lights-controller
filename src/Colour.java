@@ -38,4 +38,10 @@ public class Colour extends SequenceAlgorithm
             }
         }
     }
+
+    @Override
+    protected String getDescription()
+    {
+        return "All of the red lights are turned on for 1 second, then all the green for 1 second then all the white for 1 second.";
+    }
 }

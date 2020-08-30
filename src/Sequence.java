@@ -29,4 +29,10 @@ public class Sequence extends SequenceAlgorithm
             printOffMsg(i, colours);
         }
     }
+
+    @Override
+    protected String getDescription()
+    {
+        return "Each light is turned on for 0.5 seconds then off in turn from first to last.";
+    }
 }

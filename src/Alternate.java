@@ -29,4 +29,10 @@ public class Alternate extends SequenceAlgorithm
         SequenceAlgorithm colour = new Colour();
         colour.run(numOfFairyLights, colours, 30);
     }
+
+    @Override
+    protected String getDescription()
+    {
+        return "The 'Sequence' algorithm runs for 30 seconds, then the 'Colour' algorithm for 30 seconds.";
+    }
 }

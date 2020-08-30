@@ -37,7 +37,7 @@ public class Controller
                 if (0 <= option && option <= 1) {
                     break;
                 } else {
-                    System.out.println("\n** Please choose one of the following options: (1 - Yes, 0 - No) **");
+                    System.out.println("\n** Please choose a valid option **");
                 }
             }
         } catch (IOException ioe) {
@@ -106,37 +106,46 @@ public class Controller
 
     public SequenceAlgorithm chooseSequenceAlgorithm()
     {
-        chooseSeqAlgMsg();
+        List<SequenceAlgorithm> seqAlgObjects = namesToSequenceAlgorithms(sequenceAlgorithms);
+        chooseSeqAlgMsg(seqAlgObjects);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int selection = 0;
         try {
             while (true) {
                 System.out.println("\nType here the number corresponding to a sequencing algorithm:");
                 selection = Integer.parseInt(br.readLine());
-                if (1 <= selection && selection <= sequenceAlgorithms.size()) {
+                if (1 <= selection && selection <= seqAlgObjects.size()) {
                     break;
                 } else {
                     System.out.println("\n** Please choose a valid number **");
-                    chooseSeqAlgMsg();
+                    chooseSeqAlgMsg(seqAlgObjects);
                 }
             }
         } catch (IOException ioe) {
             System.out.println(ioe);
         }
-        SequenceAlgorithm instanceOfMyClass = null;
-        try {
-            instanceOfMyClass = (SequenceAlgorithm) Class.forName(sequenceAlgorithms.get(selection - 1)).getConstructor().newInstance();
-        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
-            System.out.println(e);
-        }
-        return instanceOfMyClass;
+        return seqAlgObjects.get(selection - 1);
     }
 
-    private void chooseSeqAlgMsg()
+    private List<SequenceAlgorithm> namesToSequenceAlgorithms(List<String> names)
+    {
+        List<SequenceAlgorithm> sequenceAlgorithms = new ArrayList<>();
+        for (int i = 0; i < names.size(); i++) {
+            try {
+                SequenceAlgorithm instanceOfMyClass = (SequenceAlgorithm) Class.forName(names.get(i)).getConstructor().newInstance();
+                sequenceAlgorithms.add(instanceOfMyClass);
+            } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
+                System.out.println(e);
+            }
+        }
+        return sequenceAlgorithms;
+    }
+
+    private void chooseSeqAlgMsg(List<SequenceAlgorithm> seqAlgObjects)
     {
         System.out.println("\nPlease choose a sequencing algorithm:\n\n(List of possible choices:)");
         for (int i = 0; i < sequenceAlgorithms.size(); i++) {
-            System.out.println((i + 1) + ") " + sequenceAlgorithms.get(i));
+            System.out.println((i + 1) + ") " + sequenceAlgorithms.get(i) + " - " + seqAlgObjects.get(i).getDescription());
         }
     }
 }
