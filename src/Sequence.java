@@ -2,7 +2,7 @@ import java.util.List;
 
 /**
  * 'Sequence' sequencing algorithm.
- *
+ * <p>
  * Each light is turned on for 0.5 seconds then off in turn from first to last.
  *
  * @author David W. Arnold
@@ -24,7 +24,7 @@ public class Sequence extends SequenceAlgorithm
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
-                System.out.println(e);
+                e.printStackTrace();
             }
             printOffMsg(i, colours);
         }

@@ -40,8 +40,8 @@ public class Controller
                     System.out.println("\n** Please choose a valid option **");
                 }
             }
-        } catch (IOException ioe) {
-            System.out.println(ioe);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         if (option == 0) {
             try {
@@ -54,8 +54,8 @@ public class Controller
                         System.out.println("\n** Please choose a positive number of fairy lights **");
                     }
                 }
-            } catch (IOException ioe) {
-                System.out.println(ioe);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         return numOfFairyLights;
@@ -83,8 +83,8 @@ public class Controller
             while (br.ready()) {
                 list.add(br.readLine());
             }
-        } catch (IOException ioe) {
-            System.out.println(ioe);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         System.out.println("\n** Read in file contents: " + path + " **");
         return list;
@@ -121,8 +121,8 @@ public class Controller
                     chooseSeqAlgMsg(seqAlgObjects);
                 }
             }
-        } catch (IOException ioe) {
-            System.out.println(ioe);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return seqAlgObjects.get(selection - 1);
     }
@@ -130,9 +130,9 @@ public class Controller
     private List<SequenceAlgorithm> namesToSequenceAlgorithms(List<String> names)
     {
         List<SequenceAlgorithm> sequenceAlgorithms = new ArrayList<>();
-        for (int i = 0; i < names.size(); i++) {
+        for (String name : names) {
             try {
-                SequenceAlgorithm instanceOfMyClass = (SequenceAlgorithm) Class.forName(names.get(i)).getConstructor().newInstance();
+                SequenceAlgorithm instanceOfMyClass = (SequenceAlgorithm) Class.forName(name).getConstructor().newInstance();
                 sequenceAlgorithms.add(instanceOfMyClass);
             } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
                 System.out.println(e);

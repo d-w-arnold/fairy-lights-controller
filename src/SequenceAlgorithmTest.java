@@ -18,11 +18,9 @@ public class SequenceAlgorithmTest
     private int n;
     private String coloursPath;
     private String seqAlgPath;
-    private ByteArrayInputStream in;
-    private Controller controller;
 
     @Before
-    public void setUp() throws Exception
+    public void setUp()
     {
         // The number of fairy lights, by default.
         n = 20;
@@ -33,16 +31,16 @@ public class SequenceAlgorithmTest
     }
 
     @After
-    public void tearDown() throws Exception
+    public void tearDown()
     {
     }
 
     @Test
     public void getColour()
     {
-        in = new ByteArrayInputStream("1".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
         System.setIn(in);
-        controller = new Controller(n, coloursPath, seqAlgPath);
+        Controller controller = new Controller(n, coloursPath, seqAlgPath);
 
         for (int i = 1; i <= controller.getSequenceAlgorithms().size(); i++) {
             in = new ByteArrayInputStream(Integer.toString(i).getBytes());

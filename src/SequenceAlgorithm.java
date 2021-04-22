@@ -53,7 +53,7 @@ public abstract class SequenceAlgorithm
             }
         } else {
             long start = System.currentTimeMillis();
-            long end = start + (seconds * 1000);
+            long end = start + (seconds * 1000L);
             while (System.currentTimeMillis() < end) {
                 runHelper(numOfFairyLights, colours);
                 repeatSeqAlgMsg(thisClassName);

@@ -28,7 +28,7 @@ public class ControllerTest
     private Controller controller;
 
     @Before
-    public void setUp() throws Exception
+    public void setUp()
     {
         // The number of fairy lights, by default.
         n = 20;
@@ -39,7 +39,7 @@ public class ControllerTest
     }
 
     @After
-    public void tearDown() throws Exception
+    public void tearDown()
     {
     }
 

@@ -2,7 +2,7 @@ import java.util.List;
 
 /**
  * 'Colour' sequencing algorithm.
- *
+ * <p>
  * All of the red lights are turned on for 1 second,
  * then all the green for 1 second then all the white for 1 second.
  *
@@ -29,7 +29,7 @@ public class Colour extends SequenceAlgorithm
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                System.out.println(e);
+                e.printStackTrace();
             }
             for (int j = 1; j <= numOfFairyLights; j++) {
                 if (j % colours.size() == i % colours.size()) {
