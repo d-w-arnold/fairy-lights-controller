@@ -1,7 +1,5 @@
 # Fairy Lights Controller
 
-#### By David W. Arnold
-
 ## How to run program:
 
 Run the `main()` method in `src/Main.java`.
