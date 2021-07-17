@@ -1,4 +1,4 @@
-# Fairy Lights Controller - Gattaca - Java Candidate Exercise
+# Fairy Lights Controller
 
 #### By David W. Arnold
 
